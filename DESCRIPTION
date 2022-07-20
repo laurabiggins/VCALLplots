@@ -1,11 +1,11 @@
 Package: VCALLplots
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Create Barplot of VCALL Counts
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Laura Biggins [aut] [cre]
+Maintainer: Laura Biggins <laura.biggins@babraham.ac.uk>
+Description: Simple package to count a set of VCALLS in a table and produce a barplot.
+    The bars follow a predefined order.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -16,3 +16,7 @@ Imports:
     dplyr,
     forcats,
     ggplot2
+VignetteBuilder: rmarkdown
+Suggests: 
+    knitr,
+    rmarkdown

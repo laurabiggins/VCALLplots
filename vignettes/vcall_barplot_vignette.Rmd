@@ -1,20 +1,21 @@
 ---
 title: "Creating VCALL barplots"
-author: "Laura Biggins"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Creating VCALL barplots}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
+  %\usepackage[UTF-8]{inputenc}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
 devtools::load_all()
+#library(VCALLplots)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+# pkgdown turns your vignettes into a website
 ```
 
 # Install and load the library
@@ -71,12 +72,12 @@ readr::write_csv(x = processed_vcalls, file = "processed_vcalls.csv")
 
 The table of counts can be passed directly to the `vcall_barplot` function.
 
-```{r, fig.width=7}
+```{r, fig.width=8}
 vcall_barplot(processed_vcalls)
 ```
 
 To show the raw_counts instead of percentages, use the `y_val` parameter.
 
-```{r, fig.width=7}
+```{r, fig.width=8}
 vcall_barplot(processed_vcalls, y_val = "raw_count")
 ```
