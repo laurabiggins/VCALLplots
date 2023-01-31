@@ -1,0 +1,83 @@
+---
+title: "Creating VCALL barplots"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Creating VCALL barplots}
+  %\VignetteEngine{knitr::knitr}
+  %\usepackage[UTF-8]{inputenc}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+devtools::load_all()
+#library(VCALLplots)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+# pkgdown turns your vignettes into a website
+```
+
+# Install and load the library
+
+```{r, eval=FALSE}
+devtools::install_github("laurabiggins/VCALLplots")
+library(VCALLplots)
+```
+
+# Import data  
+
+Use `readr::read_tsv()` to import data initially. It should look something like the table below.
+The required column is highlighted.
+
+```{r, echo=FALSE}
+knitr::kable(head(vcall_eg)) %>% 
+  kableExtra::kable_styling(bootstrap_options = "striped", font_size=10) %>% 
+  kableExtra::column_spec(17, background = "#84DCC6") %>%
+  kableExtra::scroll_box(width = "100%")
+  
+```
+<br>
+
+# Count the vcalls  
+
+Use the `process_vcalls` function. The only required argument is the tibble of imported data.
+This table must have a column containing the V calls, by default the column name is assumed 
+to be "V_CALL", but if different, this can be specified using the `vcall_col` argument.
+
+```{r}
+processed_vcalls <- process_vcalls(vcall_eg)
+```
+   
+OR...
+Explicitly specifying the column name:
+
+```{r}
+processed_vcalls <- process_vcalls(vcall_eg, vcall_col = "V_CALL")
+```
+
+That should produce a table of counts similar to this:
+
+```{r, echo=FALSE}
+knitr::kable(head(processed_vcalls))
+```
+
+To export this count data, use `readr::write_csv()`.   
+For example:
+```{r, eval=FALSE}
+readr::write_csv(x = processed_vcalls, file = "processed_vcalls.csv")
+```
+
+# Create bar plot
+
+The table of counts can be passed directly to the `vcall_barplot` function.
+
+```{r, fig.width=8}
+vcall_barplot(processed_vcalls)
+```
+
+To show the raw_counts instead of percentages, use the `y_val` parameter.
+
+```{r, fig.width=8}
+vcall_barplot(processed_vcalls, y_val = "raw_count")
+```

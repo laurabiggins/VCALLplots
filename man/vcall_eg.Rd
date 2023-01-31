@@ -16,6 +16,6 @@ A tibble with 2000 rows and x columns:
 vcall_eg
 }
 \description{
-A truncated example dataset containing V_CALLs and other poutput from pipeline.
+A truncated example dataset containing V_CALLs and other output from pipeline.
 }
 \keyword{datasets}
